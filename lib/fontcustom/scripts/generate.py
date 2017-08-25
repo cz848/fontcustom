@@ -127,7 +127,7 @@ try:
     manifest['fonts'].append(fontfile + '.woff')
 
     # Convert EOT for IE7
-    if font['ie7'] === true:
+    if font['ie7'] == true:
         subprocess.call('python ' + scriptPath + '/eotlitetool.py ' + fontfile + '.ttf -o ' + fontfile + '.eot', shell=True)
         # check if windows
         if os.name == 'nt':
