@@ -44,7 +44,7 @@ module Fontcustom
         else
           # Offset to work around Chrome Windows bug
           # https://github.com/FontCustom/fontcustom/issues/1
-          0xf100
+          0x2801
         end
 
         files = Dir.glob File.join(@options[:input][:vectors], "*.svg")

@@ -40,6 +40,7 @@ font.fontname = options['font_name']
 font.familyname = options['font_name']
 font.fullname = options['font_name']
 font.copyright = options['copyright']
+font.ie7 = options['ie7']
 if options['autowidth']:
     font.autoWidth(0, 0, options['font_em'])
 
@@ -54,7 +55,7 @@ def removeSwitchFromSvg( file ):
     tmpsvgfile = tempfile.NamedTemporaryFile(suffix=".svg", delete=False)
     svgtext = svgtext.replace('<switch>', '')
     svgtext = svgtext.replace('</switch>', '')
-    tmpsvgfile.file.write(svgtext.encode('utf-8'))
+    tmpsvgfile.file.write(svgtext.decode('utf-8').encode('utf-8'))
     tmpsvgfile.file.close()
 
     return tmpsvgfile.name
@@ -126,13 +127,14 @@ try:
     manifest['fonts'].append(fontfile + '.woff')
 
     # Convert EOT for IE7
-    subprocess.call('python ' + scriptPath + '/eotlitetool.py ' + fontfile + '.ttf -o ' + fontfile + '.eot', shell=True)
-    # check if windows
-    if os.name == 'nt':
-        subprocess.call('move ' + fontfile + '.eotlite ' + fontfile + '.eot', shell=True)
-    else:
-        subprocess.call('mv ' + fontfile + '.eotlite ' + fontfile + '.eot', shell=True)
-    manifest['fonts'].append(fontfile + '.eot')
+    if font['ie7'] === true:
+        subprocess.call('python ' + scriptPath + '/eotlitetool.py ' + fontfile + '.ttf -o ' + fontfile + '.eot', shell=True)
+        # check if windows
+        if os.name == 'nt':
+            subprocess.call('move ' + fontfile + '.eotlite ' + fontfile + '.eot', shell=True)
+        else:
+            subprocess.call('mv ' + fontfile + '.eotlite ' + fontfile + '.eot', shell=True)
+        manifest['fonts'].append(fontfile + '.eot')
 
     # Convert TTF to WOFF2
     subprocess.call('woff2_compress \'' + fontfile + '.ttf\'', shell=True)
