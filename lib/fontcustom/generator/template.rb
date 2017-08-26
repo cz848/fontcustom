@@ -151,12 +151,14 @@ module Fontcustom
 }|
 
           end
-          string = %Q|#{string}@font-face {
+          string = %Q|#{string}
+@font-face {
   font-family: "#{font_name}";
-  src: url("data:application/x-font-woff;charset=utf-8;base64,#{woff_base64}") format("woff"),
-       #{url}("#{path}.woff2") format("woff2"),
-       #{url}("#{path}.ttf") format("truetype"),
-       #{url}("#{path}.svg##{font_name}") format("svg");
+  src:
+    url("data:application/x-font-woff;charset=utf-8;base64,#{woff_base64}") format("woff"),
+    #{url}("#{path}.woff2") format("woff2"),
+    #{url}("#{path}.ttf") format("truetype"),
+    #{url}("#{path}.svg##{font_name}") format("svg");
   font-weight: normal;
   font-style: normal;
 }|
@@ -165,21 +167,23 @@ module Fontcustom
             string = %Q|@font-face {
   font-family: "#{font_name}";
   src: #{url}("#{path}.eot");
-  src: #{url}("#{path}.eot?#iefix") format("embedded-opentype"),
-       #{url}("#{path}.woff2") format("woff2"),
-       #{url}("#{path}.woff") format("woff"),
-       #{url}("#{path}.ttf") format("truetype"),
-       #{url}("#{path}.svg##{font_name}") format("svg");
+  src:
+    #{url}("#{path}.eot?#iefix") format("embedded-opentype"),
+    #{url}("#{path}.woff2") format("woff2"),
+    #{url}("#{path}.woff") format("woff"),
+    #{url}("#{path}.ttf") format("truetype"),
+    #{url}("#{path}.svg##{font_name}") format("svg");
   font-weight: normal;
   font-style: normal;
 }|
           else
             string = %Q|@font-face {
   font-family: "#{font_name}";
-  src: #{url}("#{path}.woff2") format("woff2"),
-       #{url}("#{path}.woff") format("woff"),
-       #{url}("#{path}.ttf") format("truetype"),
-       #{url}("#{path}.svg##{font_name}") format("svg");
+  src:
+    #{url}("#{path}.woff2") format("woff2"),
+    #{url}("#{path}.woff") format("woff"),
+    #{url}("#{path}.ttf") format("truetype"),
+    #{url}("#{path}.svg##{font_name}") format("svg");
   font-weight: normal;
   font-style: normal;
 }|
@@ -189,7 +193,7 @@ module Fontcustom
         # For Windows/Chrome <http://stackoverflow.com/a/19247378/1202445>
         string << %Q|
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
   @font-face {
     font-family: "#{font_name}";
     src: #{url}("#{path}.svg##{font_name}") format("svg");
