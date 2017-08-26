@@ -142,11 +142,11 @@ module Fontcustom
         # Bulletproof @Font-Face <http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax>
         # With and without Base64
         if @options[:base64]
-          if @options[:ie7]
+          if @options[:ie8]
             string = %Q|@font-face {
   font-family: "#{font_name}";
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
   src: #{url}("#{path}.eot?") format("embedded-opentype");
 }|
 
@@ -154,8 +154,8 @@ module Fontcustom
           string = %Q|#{string}
 @font-face {
   font-family: "#{font_name}";
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
   src:
     url("data:application/x-font-woff;charset=utf-8;base64,#{woff_base64}") format("woff"),
     #{url}("#{path}.woff2") format("woff2"),
@@ -163,11 +163,11 @@ module Fontcustom
     #{url}("#{path}.svg##{font_name}") format("svg");
 }|
         else
-          if @options[:ie7]
+          if @options[:ie8]
             string = %Q|@font-face {
   font-family: "#{font_name}";
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
   src: #{url}("#{path}.eot");
   src:
     #{url}("#{path}.eot?#iefix") format("embedded-opentype"),
@@ -179,8 +179,8 @@ module Fontcustom
           else
             string = %Q|@font-face {
   font-family: "#{font_name}";
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
   src:
     #{url}("#{path}.woff2") format("woff2"),
     #{url}("#{path}.woff") format("woff"),
