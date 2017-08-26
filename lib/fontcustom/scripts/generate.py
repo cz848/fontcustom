@@ -40,7 +40,6 @@ font.fontname = options['font_name']
 font.familyname = options['font_name']
 font.fullname = options['font_name']
 font.copyright = options['copyright']
-font.ie7 = options['ie7']
 if options['autowidth']:
     font.autoWidth(0, 0, options['font_em'])
 
@@ -127,7 +126,7 @@ try:
     manifest['fonts'].append(fontfile + '.woff')
 
     # Convert EOT for IE7
-    if font['ie7'] == True:
+    if options['ie7'] == True:
         subprocess.call('python ' + scriptPath + '/eotlitetool.py ' + fontfile + '.ttf -o ' + fontfile + '.eot', shell=True)
         # check if windows
         if os.name == 'nt':

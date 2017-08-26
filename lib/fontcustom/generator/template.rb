@@ -151,7 +151,7 @@ module Fontcustom
 }|
 
           end
-          string += %Q|@font-face {
+          string = %Q|#{string}@font-face {
   font-family: "#{font_name}";
   src: url("data:application/x-font-woff;charset=utf-8;base64,#{woff_base64}") format("woff"),
        #{url}("#{path}.woff2") format("woff2"),
