@@ -55,6 +55,10 @@ module Fontcustom
     class_option :css3, :type => :boolean,
       :desc => "Use CSS3 Pseudo Elements"
 
+    class_option :ie7, :type => :boolean,
+      :desc => "If compatible IE 7 or not.",
+      :default => DEFAULT_OPTIONS[:ie7]
+
     class_option :no_hash, :aliases => "-h", :type => :boolean,
       :desc => "Generate fonts without asset-busting hashes."
 

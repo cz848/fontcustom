@@ -145,3 +145,4 @@ finally:
     manifestfile.write(json.dumps(manifest, indent=2, sort_keys=True))
     manifestfile.truncate()
     manifestfile.close()
+

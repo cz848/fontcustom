@@ -21,6 +21,9 @@
 # Encode WOFF fonts into the generated CSS.
 #base64: true
 
+# If compatible IE 7 or not.
+#ie7: false
+
 # Forces compilation, even if inputs have not changed
 #force: true
 
@@ -31,7 +34,7 @@
 #quiet: true
 
 # Copyright information.
-#copyright: 
+#copyright:
 
 
 # -----------------------------------------------------------------------------

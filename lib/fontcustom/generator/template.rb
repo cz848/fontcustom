@@ -142,14 +142,16 @@ module Fontcustom
         # Bulletproof @Font-Face <http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax>
         # With and without Base64
         if @options[:base64]
-          string = %Q|@font-face {
+          if @options[:ie7]
+            string = %Q|@font-face {
   font-family: "#{font_name}";
   src: #{url}("#{path}.eot?") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
-}
+}|
 
-@font-face {
+          end
+          string += %Q|@font-face {
   font-family: "#{font_name}";
   src: url("data:application/x-font-woff;charset=utf-8;base64,#{woff_base64}") format("woff"),
        #{url}("#{path}.woff2") format("woff2"),
@@ -159,7 +161,8 @@ module Fontcustom
   font-style: normal;
 }|
         else
-        string = %Q|@font-face {
+          if @options[:ie7]
+            string = %Q|@font-face {
   font-family: "#{font_name}";
   src: #{url}("#{path}.eot");
   src: #{url}("#{path}.eot?#iefix") format("embedded-opentype"),
@@ -170,6 +173,17 @@ module Fontcustom
   font-weight: normal;
   font-style: normal;
 }|
+          else
+            string = %Q|@font-face {
+  font-family: "#{font_name}";
+  src: #{url}("#{path}.woff2") format("woff2"),
+       #{url}("#{path}.woff") format("woff"),
+       #{url}("#{path}.ttf") format("truetype"),
+       #{url}("#{path}.svg##{font_name}") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}|
+          end
         end
 
         # For Windows/Chrome <http://stackoverflow.com/a/19247378/1202445>
