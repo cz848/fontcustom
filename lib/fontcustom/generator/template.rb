@@ -145,27 +145,29 @@ module Fontcustom
           if @options[:ie7]
             string = %Q|@font-face {
   font-family: "#{font_name}";
-  src: #{url}("#{path}.eot?") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
+  src: #{url}("#{path}.eot?") format("embedded-opentype");
 }|
 
           end
           string = %Q|#{string}
 @font-face {
   font-family: "#{font_name}";
+  font-weight: normal;
+  font-style: normal;
   src:
     url("data:application/x-font-woff;charset=utf-8;base64,#{woff_base64}") format("woff"),
     #{url}("#{path}.woff2") format("woff2"),
     #{url}("#{path}.ttf") format("truetype"),
     #{url}("#{path}.svg##{font_name}") format("svg");
-  font-weight: normal;
-  font-style: normal;
 }|
         else
           if @options[:ie7]
             string = %Q|@font-face {
   font-family: "#{font_name}";
+  font-weight: normal;
+  font-style: normal;
   src: #{url}("#{path}.eot");
   src:
     #{url}("#{path}.eot?#iefix") format("embedded-opentype"),
@@ -173,19 +175,17 @@ module Fontcustom
     #{url}("#{path}.woff") format("woff"),
     #{url}("#{path}.ttf") format("truetype"),
     #{url}("#{path}.svg##{font_name}") format("svg");
-  font-weight: normal;
-  font-style: normal;
 }|
           else
             string = %Q|@font-face {
   font-family: "#{font_name}";
+  font-weight: normal;
+  font-style: normal;
   src:
     #{url}("#{path}.woff2") format("woff2"),
     #{url}("#{path}.woff") format("woff"),
     #{url}("#{path}.ttf") format("truetype"),
     #{url}("#{path}.svg##{font_name}") format("svg");
-  font-weight: normal;
-  font-style: normal;
 }|
           end
         end
@@ -222,8 +222,8 @@ module Fontcustom
   font-variant: normal;
   line-height: 1;
   text-decoration: inherit;
-  text-rendering: optimizeLegibility;
   text-transform: none;
+  text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;|
